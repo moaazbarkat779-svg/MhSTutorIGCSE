@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mh.S Mathematics | Staff Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#071326;--panel:#0c1e38;--panel2:#102847;--line:rgba(125,190,255,.17);--text:#eef6ff;--muted:#9bb3cf;--cyan:#51d7f4;--blue:#429bff;--gold:#f5c86b;--red:#ff7585}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,sans-serif;color:var(--text);background:radial-gradient(ellipse at 15% 10%,#123765 0,transparent 36%),radial-gradient(ellipse at 90% 85%,#092f52 0,transparent 35%),var(--bg);display:grid;place-items:center;padding:24px;overflow-x:hidden}.symbols{position:fixed;inset:0;pointer-events:none;overflow:hidden;opacity:.11;font-size:32px;color:#72c8ff}.symbols span{position:absolute;animation:float 14s ease-in-out infinite}.symbols span:nth-child(1){top:8%;left:8%}.symbols span:nth-child(2){top:22%;right:12%;font-size:52px}.symbols span:nth-child(3){bottom:16%;left:14%;font-size:48px}.symbols span:nth-child(4){bottom:10%;right:9%}.symbols span:nth-child(5){top:55%;left:4%}.symbols span:nth-child(6){top:70%;right:22%;font-size:42px}@keyframes float{50%{transform:translateY(-14px) rotate(8deg)}}.wrap{width:min(100%,460px);position:relative}.brand{text-align:center;margin-bottom:24px}.logo{width:62px;height:62px;display:grid;place-items:center;margin:0 auto 13px;border:1px solid rgba(81,215,244,.55);border-radius:19px;background:linear-gradient(145deg,#163f68,#0a203c);color:var(--gold);font-size:28px;font-weight:800;box-shadow:0 12px 40px #0004}.brand h1{font-size:23px;letter-spacing:-.7px;margin:0}.brand p{margin:8px 0 0;color:var(--muted);font-size:13px}.card{background:linear-gradient(155deg,rgba(16,40,71,.97),rgba(8,24,45,.97));border:1px solid var(--line);border-radius:23px;padding:30px;box-shadow:0 28px 90px #0005;backdrop-filter:blur(12px)}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:1.8px;font-size:10px;font-weight:800}.card h2{font-size:25px;letter-spacing:-.8px;margin:9px 0 8px}.intro{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 25px}label{display:block;font-size:12px;font-weight:700;color:#d9eaff;margin:0 0 8px}.field{margin-bottom:17px}input{width:100%;padding:14px 15px;border-radius:12px;border:1px solid rgba(140,190,240,.2);background:#07182d;color:var(--text);font:inherit;font-size:14px;outline:none;transition:.2s}input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #51d7f41b}input::placeholder{color:#607a98}.submit{width:100%;border:0;border-radius:12px;padding:14px 18px;background:linear-gradient(100deg,#37bfe9,#438cff);color:#06172a;font:inherit;font-weight:800;cursor:pointer;margin-top:5px;box-shadow:0 8px 22px #2798df30}.submit:disabled{opacity:.6;cursor:wait}.message{display:none;border-radius:11px;padding:12px 14px;margin:0 0 16px;font-size:12px;line-height:1.5}.message.show{display:block}.message.error{background:#431d2b;border:1px solid #8e3c50;color:#ffdce2}.message.success{background:#103a38;border:1px solid #267c77;color:#c8fff4}.foot{text-align:center;color:#718ba9;font-size:11px;margin-top:19px}.foot strong{color:#b8cee6;font-weight:600}@media(max-width:480px){.card{padding:24px 20px}.brand h1{font-size:21px}}
+</style></head><body>
+<div class="symbols" aria-hidden="true"><span>∑</span><span>∫</span><span>π</span><span>√x</span><span>Δ</span><span>f(x)</span></div>
+<main class="wrap"><header class="brand"><div class="logo">∫</div><h1>Mh.S Mathematics</h1><p>Staff workspace · Teaching and progress tracking</p></header>
+<section class="card"><div class="eyebrow">Secure staff access</div><h2>Welcome back.</h2><p class="intro">Sign in with your staff email and password to manage learning materials and monitor student progress.</p>
+<div id="message" class="message" role="status"></div><form id="loginForm" onsubmit="return false;" novalidate><div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="username" placeholder="staff@example.com" required></div><div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></div><button id="submit" class="submit" type="submit">Sign in to staff dashboard <span aria-hidden="true">→</span></button></form></section>
+<div class="foot"><strong>Mh.S Mathematics</strong> · Staff access only<br>Access is restricted to accounts approved by the administrator.</div></main>
+<script>
+const SUPABASE_URL = "https://usnxjwapsfyuqnvuysjs.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_22p3G6H5F7wNmobahYtONA_7pzdHXHG";
+const form = document.getElementById('loginForm');
+const button = document.getElementById('submit');
+const message = document.getElementById('message');
+const originalButtonHTML = 'Sign in to staff dashboard <span aria-hidden="true">→</span>';
+let supabaseClient = null;
+
+function showMessage(text, type = 'error') {
+  message.textContent = text;
+  message.className = 'message show ' + type;
+}
+
+// Attach the handler before initializing Supabase, so a missing CDN library
+// can never cause the form to submit normally and simply refresh the page.
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    showMessage('Enter both your staff email address and password.');
+    return;
+  }
+  if (!supabaseClient) {
+    showMessage('The sign-in service did not load. Check your internet connection, then refresh this page. If it continues, check whether the Supabase CDN is blocked.');
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Signing in…';
+  message.className = 'message';
+
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    if (!data.user) throw new Error('Sign-in was not completed. Please try again.');
+
+    let staffRecord;
+    try {
+      const result = await supabaseClient
+        .from('staff_members')
+        .select('user_id, display_name, active')
+        .eq('user_id', data.user.id)
+        .maybeSingle();
+      if (result.error) throw result.error;
+      staffRecord = result.data;
+    } catch (verificationError) {
+      await supabaseClient.auth.signOut();
+      throw new Error('Your login worked, but staff access could not be verified. Run the database setup SQL and ensure this user is listed in staff_members. Details: ' + (verificationError.message || 'database request failed'));
+    }
+
+    if (!staffRecord || staffRecord.active !== true) {
+      await supabaseClient.auth.signOut();
+      throw new Error('This account is not authorised for staff access. Ask the administrator to approve it.');
+    }
+
+    showMessage('Access verified. Opening the staff dashboard…', 'success');
+    window.location.href = new URL('staff-dashboard.html', window.location.href).href;
+  } catch (error) {
+    showMessage(error.message || 'Unable to sign in. Check your email and password, then try again.');
+    button.disabled = false;
+    button.innerHTML = originalButtonHTML;
+  }
+});
+
+try {
+  if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+    throw new Error('Supabase JavaScript library did not load.');
+  }
+  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+} catch (error) {
+  console.error('Staff login initialization error:', error);
+  showMessage('The sign-in service did not load. Check your internet connection, then refresh this page. If it continues, check whether the Supabase CDN is blocked.');
+}
+
+(async () => {
+  if (!supabaseClient) return;
+  try {
+    const { data, error } = await supabaseClient.auth.getSession();
+    if (error) throw error;
+    if (data.session?.user) {
+      const { data: staffRecord, error: staffError } = await supabaseClient
+        .from('staff_members')
+        .select('user_id, active')
+        .eq('user_id', data.session.user.id)
+        .maybeSingle();
+      if (!staffError && staffRecord?.active === true) {
+        window.location.href = new URL('staff-dashboard.html', window.location.href).href;
+      } else if (!staffRecord || staffError) {
+        await supabaseClient.auth.signOut();
+      }
+    }
+  } catch (error) {
+    console.error('Could not check existing staff session:', error);
+  }
+})();
+</script></body></html>
