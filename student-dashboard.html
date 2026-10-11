@@ -26,9 +26,7 @@
   --shadow: 0 20px 60px rgba(0, 0, 0, .22);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   min-height: 100%;
@@ -64,26 +62,12 @@ body::before {
   transform: rotate(-12deg) scale(1.3);
 }
 
-button,
-input {
-  font: inherit;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .55; cursor: wait; }
+a { color: var(--cyan); }
 
-button {
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: .55;
-  cursor: wait;
-}
-
-a {
-  color: var(--cyan);
-}
-
-button:focus-visible,
-a:focus-visible {
+button:focus-visible, a:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
 }
@@ -127,9 +111,7 @@ a:focus-visible {
   letter-spacing: -.5px;
 }
 
-.brand span {
-  color: var(--cyan);
-}
+.brand span { color: var(--cyan); }
 
 .brand-sub {
   font-size: 10px;
@@ -192,9 +174,7 @@ h1 {
   letter-spacing: -1.3px;
 }
 
-h1 span {
-  color: var(--gold);
-}
+h1 span { color: var(--gold); }
 
 .muted {
   color: var(--muted);
@@ -219,9 +199,7 @@ h1 span {
   transform: translateY(-1px);
 }
 
-#logoutButton {
-  border-color: rgba(244, 201, 107, .38);
-}
+#logoutButton { border-color: rgba(244, 201, 107, .38); }
 
 #logoutButton:hover {
   border-color: var(--gold);
@@ -238,27 +216,10 @@ h1 span {
   overflow-wrap: anywhere;
 }
 
-.status.show {
-  display: block;
-}
-
-.status.error {
-  background: #3b202b;
-  border: 1px solid #874457;
-  color: #ffd7de;
-}
-
-.status.info {
-  background: #12324a;
-  border: 1px solid #2b6786;
-  color: #c8f4ff;
-}
-
-.status.success {
-  background: #17372f;
-  border: 1px solid #397c68;
-  color: #d0ffeb;
-}
+.status.show { display: block; }
+.status.error { background: #3b202b; border: 1px solid #874457; color: #ffd7de; }
+.status.info { background: #12324a; border: 1px solid #2b6786; color: #c8f4ff; }
+.status.success { background: #17372f; border: 1px solid #397c68; color: #d0ffeb; }
 
 .tabs {
   display: grid;
@@ -322,15 +283,8 @@ h1 span {
   flex-wrap: wrap;
 }
 
-h2 {
-  font-size: 21px;
-  letter-spacing: -.4px;
-  margin: 0 0 7px;
-}
-
-.panel-head p {
-  margin: 0;
-}
+h2 { font-size: 21px; letter-spacing: -.4px; margin: 0 0 7px; }
+.panel-head p { margin: 0; }
 
 .items {
   display: grid;
@@ -347,10 +301,7 @@ h2 {
   transition: border-color .18s, transform .18s;
 }
 
-.item:hover {
-  border-color: #356487;
-  transform: translateY(-2px);
-}
+.item:hover { border-color: #356487; transform: translateY(-2px); }
 
 .item h3 {
   font-size: 15px;
@@ -390,10 +341,7 @@ h2 {
   transition: .18s ease;
 }
 
-.item-link:hover {
-  background: #12324a;
-  border-color: var(--cyan);
-}
+.item-link:hover { background: #12324a; border-color: var(--cyan); }
 
 .empty {
   border: 1px dashed #2b4a66;
@@ -435,14 +383,8 @@ footer strong {
   margin-right: 8px;
 }
 
-footer a {
-  color: var(--cyan);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
+footer a { color: var(--cyan); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
 .overlay {
   position: fixed;
@@ -466,10 +408,7 @@ footer a:hover {
   box-shadow: 0 25px 90px rgba(0, 0, 0, .5);
 }
 
-.modal h2 {
-  color: var(--white);
-  margin-bottom: 10px;
-}
+.modal h2 { color: var(--white); margin-bottom: 10px; }
 
 .modal p {
   font-size: 13px;
@@ -501,78 +440,30 @@ footer a:hover {
   transform: translateY(-1px);
 }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 @media (max-width: 720px) {
-  .topbar {
-    align-items: flex-start;
-  }
-
-  .student-chip {
-    max-width: 52%;
-  }
-
-  .tabs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .items {
-    grid-template-columns: 1fr;
-  }
+  .topbar { align-items: flex-start; }
+  .student-chip { max-width: 52%; }
+  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .items { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 460px) {
-  .topbar {
-    flex-wrap: wrap;
-    padding: 19px 0;
-  }
-
-  .student-chip {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .brand {
-    font-size: 17px;
-  }
-
-  .logo {
-    width: 43px;
-    height: 43px;
-  }
-
-  main {
-    margin-top: 28px;
-  }
-
-  .welcome {
-    align-items: flex-start;
-  }
-
-  .content-panel {
-    padding: 17px;
-  }
-
-  .panel-head {
-    align-items: flex-start;
-  }
-
-  .modal {
-    padding: 23px;
-  }
-
-  footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+  .topbar { flex-wrap: wrap; padding: 19px 0; }
+  .student-chip { max-width: 100%; width: 100%; }
+  .brand { font-size: 17px; }
+  .logo { width: 43px; height: 43px; }
+  main { margin-top: 28px; }
+  .welcome { align-items: flex-start; }
+  .content-panel { padding: 17px; }
+  .panel-head { align-items: flex-start; }
+  .modal { padding: 23px; }
+  footer { align-items: flex-start; flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
@@ -604,7 +495,6 @@ footer a:hover {
       <h1>Welcome, <span id="welcomeName">student</span>.</h1>
       <div class="muted">Your learning materials, all in one place.</div>
     </div>
-
     <button type="button" class="small-button" id="logoutButton">Log out</button>
   </section>
 
@@ -623,7 +513,6 @@ footer a:hover {
         <h2 id="sectionTitle">Announcements</h2>
         <p class="muted" id="sectionDescription">Important updates from your tutor.</p>
       </div>
-
       <button type="button" class="small-button" id="refreshButton">↻ Refresh</button>
     </div>
 
@@ -703,8 +592,10 @@ footer a:hover {
 
   let supabase = null;
   let currentUser = null;
+  let studentProfile = {};
   let activeTab = "announcements";
   let loading = false;
+  let loadVersion = 0;
 
   function showStatus(message, type = "info") {
     statusBox.textContent = message;
@@ -761,7 +652,7 @@ footer a:hover {
 
     return new Intl.DateTimeFormat(undefined, {
       dateStyle: "medium",
-      timeStyle: String(value).includes("T") ? "short" : undefined
+      ...(String(value).includes("T") ? { timeStyle: "short" } : {})
     }).format(date);
   }
 
@@ -779,28 +670,115 @@ footer a:hover {
     return "";
   }
 
+  /*
+   * Standardize labels so equivalent group names match.
+   * For example, "Maths" and "Mathematics" become the same value.
+   */
+  function normalizeGroupValue(field, value) {
+    if (value === null || value === undefined) return "";
+
+    const v = String(value)
+      .trim()
+      .toLowerCase()
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ");
+
+    if (!v || ["any", "all", "everyone"].includes(v)) return "";
+
+    if (field === "stage") {
+      if (v.includes("igcse")) return "igcse";
+      if (v.includes("a level") || v === "alevel") return "a level";
+    }
+
+    if (field === "maths_type") {
+      if (["math", "maths", "mathematics"].includes(v)) {
+        return "mathematics";
+      }
+
+      if (v.includes("additional") && v.includes("math")) {
+        return "additional mathematics";
+      }
+
+      if (v.includes("further") && v.includes("math")) {
+        return "further mathematics";
+      }
+    }
+
+    if (field === "board") {
+      if (["cie", "caie", "cambridge international"].includes(v)) {
+        return "cambridge";
+      }
+
+      if (["edexcel", "pearson"].includes(v)) {
+        return "pearson edexcel";
+      }
+
+      if (["aqa oxford", "oxford aqa"].includes(v)) {
+        return "oxford aqa";
+      }
+    }
+
+    if (field === "qualification_type") {
+      if (["as", "as level"].includes(v)) return "as";
+      if (["a2", "a2 level"].includes(v)) return "a2";
+
+      if (["full al", "full a level", "alevel", "a level"].includes(v)) {
+        return "full a level";
+      }
+    }
+
+    return v;
+  }
+
+  /*
+   * Only restrict a post when its audience field is specified.
+   * Student data comes from student_profiles, with Auth metadata
+   * used as a fallback.
+   */
   function isForThisStudent(row) {
     const metadata = currentUser?.user_metadata || {};
 
     const comparisons = [
-      ["audience_stage", metadata.stage],
-      ["audience_maths_type", metadata.maths_type],
-      ["audience_qualification_type", metadata.qualification_type],
-      ["audience_board", metadata.board]
+      ["audience_stage", "stage"],
+      ["audience_maths_type", "maths_type"],
+      ["audience_qualification_type", "qualification_type"],
+      ["audience_board", "board"]
     ];
 
-    return comparisons.every(([key, studentValue]) => {
-      const audience = row[key];
+    return comparisons.every(([audienceField, studentField]) => {
+      const target = normalizeGroupValue(studentField, row[audienceField]);
 
-      return audience === null ||
-        audience === undefined ||
-        audience === "" ||
-        (
-          studentValue !== null &&
-          studentValue !== undefined &&
-          String(audience).toLowerCase() === String(studentValue).toLowerCase()
-        );
+      if (!target) return true;
+
+      const savedValue = studentProfile[studentField];
+      const metadataValue = metadata[studentField];
+
+      const studentValue =
+        savedValue !== null &&
+        savedValue !== undefined &&
+        String(savedValue).trim() !== ""
+          ? savedValue
+          : metadataValue;
+
+      const normalizedStudent = normalizeGroupValue(
+        studentField,
+        studentValue
+      );
+
+      return normalizedStudent !== "" && normalizedStudent === target;
     });
+  }
+
+  function renderEmpty(message, heading = "Nothing to display yet") {
+    itemsBox.replaceChildren();
+
+    const empty = document.createElement("div");
+    empty.className = "empty";
+
+    addTextElement(empty, "strong", "", heading);
+    addTextElement(empty, "span", "", message);
+
+    itemsBox.appendChild(empty);
   }
 
   function renderItems(rows, config) {
@@ -809,13 +787,7 @@ footer a:hover {
     const filtered = (rows || []).filter(isForThisStudent);
 
     if (!filtered.length) {
-      const empty = document.createElement("div");
-      empty.className = "empty";
-
-      addTextElement(empty, "strong", "", "Nothing to display yet");
-      addTextElement(empty, "span", "", config.empty);
-
-      itemsBox.appendChild(empty);
+      renderEmpty(config.empty);
       return;
     }
 
@@ -870,29 +842,18 @@ footer a:hover {
     });
   }
 
-  function showLoading() {
-    itemsBox.replaceChildren();
-
-    const empty = document.createElement("div");
-    empty.className = "empty";
-
-    addTextElement(empty, "strong", "", "Loading…");
-    addTextElement(empty, "span", "", "Fetching the latest course content.");
-
-    itemsBox.appendChild(empty);
-  }
-
   async function loadActiveTab() {
-    if (!supabase || !currentUser || loading) return;
+    if (!supabase || !currentUser) return;
+
+    const thisLoad = ++loadVersion;
+    const config = sections[activeTab];
 
     loading = true;
     refreshButton.disabled = true;
     refreshButton.textContent = "Loading…";
 
     clearStatus();
-    showLoading();
-
-    const config = sections[activeTab];
+    renderEmpty("Fetching the latest course content.", "Loading…");
 
     try {
       const { data, error } = await supabase
@@ -902,34 +863,31 @@ footer a:hover {
 
       if (error) throw error;
 
+      // Ignore outdated results if the student switched tabs meanwhile.
+      if (thisLoad !== loadVersion) return;
+
       renderItems(data, config);
     } catch (error) {
-      itemsBox.replaceChildren();
+      if (thisLoad !== loadVersion) return;
 
-      const empty = document.createElement("div");
-      empty.className = "empty";
-
-      addTextElement(empty, "strong", "", "Could not load this section");
-      addTextElement(
-        empty,
-        "span",
-        "",
-        error.message || "Please try refreshing the page."
+      renderEmpty(
+        error.message || "Please try refreshing the page.",
+        "Could not load this section"
       );
-
-      itemsBox.appendChild(empty);
 
       showStatus(
         "Unable to load " + config.title.toLowerCase() +
-        ". Check that the " + config.table +
-        " table exists and that its Supabase SELECT policy is configured. Details: " +
+        ". Check the " + config.table +
+        " table and its Supabase SELECT policy. Details: " +
         (error.message || "Unknown error"),
         "error"
       );
     } finally {
-      loading = false;
-      refreshButton.disabled = false;
-      refreshButton.textContent = "↻ Refresh";
+      if (thisLoad === loadVersion) {
+        loading = false;
+        refreshButton.disabled = false;
+        refreshButton.textContent = "↻ Refresh";
+      }
     }
   }
 
@@ -940,7 +898,6 @@ footer a:hover {
 
     document.querySelectorAll(".tab[data-tab]").forEach(button => {
       const selected = button.dataset.tab === tab;
-
       button.classList.toggle("active", selected);
       button.setAttribute("aria-selected", selected ? "true" : "false");
     });
@@ -951,34 +908,69 @@ footer a:hover {
     loadActiveTab();
   }
 
+  async function loadStudentProfile() {
+    const metadata = currentUser?.user_metadata || {};
+
+    // Start with Auth metadata so a profile read failure doesn't erase
+    // the student details that are already available.
+    studentProfile = {
+      stage: metadata.stage ?? null,
+      maths_type: metadata.maths_type ?? null,
+      qualification_type: metadata.qualification_type ?? null,
+      board: metadata.board ?? null
+    };
+
+    const { data: profile, error } = await supabase
+      .from("student_profiles")
+      .select("stage, maths_type, qualification_type, board")
+      .eq("id", currentUser.id)
+      .maybeSingle();
+
+    if (error) {
+      console.warn("Could not load student_profiles:", error.message);
+      return;
+    }
+
+    if (profile) {
+      for (const field of [
+        "stage",
+        "maths_type",
+        "qualification_type",
+        "board"
+      ]) {
+        if (
+          profile[field] !== null &&
+          profile[field] !== undefined &&
+          String(profile[field]).trim() !== ""
+        ) {
+          studentProfile[field] = profile[field];
+        }
+      }
+    }
+  }
+
+  function updateStudentHeader() {
+    const metadata = currentUser?.user_metadata || {};
+    const name = safeText(metadata.full_name) || currentUser?.email || "Student";
+
+    $("studentName").textContent = name;
+    $("welcomeName").textContent = name.split(/\s+/)[0] || "student";
+
+    const details = [
+      currentUser?.email,
+      studentProfile.stage,
+      studentProfile.maths_type,
+      studentProfile.qualification_type,
+      studentProfile.board
+    ].filter(Boolean);
+
+    $("studentDetails").textContent = details.join(" · ");
+  }
+
   async function initialize() {
-    if (
-      !window.supabase ||
-      SUPABASE_URL.includes("YOUR_SUPABASE") ||
-      SUPABASE_PUBLIC_KEY.includes("YOUR_SUPABASE")
-    ) {
-      $("studentName").textContent = "Setup required";
-      $("studentDetails").textContent = "Supabase configuration is missing.";
-
-      showStatus(
-        "Add your real Supabase project URL and public/anon key to student-dashboard.html.",
-        "error"
-      );
-
-      itemsBox.replaceChildren();
-
-      const empty = document.createElement("div");
-      empty.className = "empty";
-
-      addTextElement(empty, "strong", "", "Supabase is not configured");
-      addTextElement(
-        empty,
-        "span",
-        "",
-        "Update the two configuration values near the bottom of this file."
-      );
-
-      itemsBox.appendChild(empty);
+    if (!window.supabase) {
+      showStatus("The Supabase library failed to load. Check your internet connection and refresh.", "error");
+      renderEmpty("The Supabase JavaScript library is unavailable.", "Connection problem");
       return;
     }
 
@@ -992,6 +984,7 @@ footer a:hover {
 
     if (sessionError) {
       showStatus(sessionError.message, "error");
+      renderEmpty(sessionError.message, "Authentication error");
       return;
     }
 
@@ -1004,21 +997,8 @@ footer a:hover {
 
     currentUser = sessionData.session.user;
 
-    const metadata = currentUser.user_metadata || {};
-    const name = safeText(metadata.full_name) || currentUser.email || "Student";
-
-    $("studentName").textContent = name;
-    $("welcomeName").textContent = name.split(/\s+/)[0] || "student";
-
-    const details = [
-      currentUser.email,
-      metadata.stage,
-      metadata.maths_type,
-      metadata.qualification_type,
-      metadata.board
-    ].filter(Boolean);
-
-    $("studentDetails").textContent = details.join(" · ");
+    await loadStudentProfile();
+    updateStudentHeader();
 
     const hash = new URLSearchParams(
       window.location.hash.replace(/^#/, "")
@@ -1097,20 +1077,21 @@ footer a:hover {
         new URL("index.html", window.location.href).href
       );
     } catch (error) {
-      showStatus(
-        error.message || "Logout failed. Please try again.",
-        "error"
-      );
-
+      showStatus(error.message || "Logout failed. Please try again.", "error");
       button.disabled = false;
       button.textContent = "Log out";
     }
   });
 
   initialize().catch(error => {
+    console.error("Dashboard initialization failed:", error);
     showStatus(
       error.message || "The dashboard could not be initialized.",
       "error"
+    );
+    renderEmpty(
+      error.message || "Refresh the page and try again.",
+      "Dashboard initialization failed"
     );
   });
 })();
