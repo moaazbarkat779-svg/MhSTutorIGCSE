@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,1223 +5,202 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071426">
 <title>Mh.S Mathematics | Student Portal</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-:root {
-    --bg: #071426;
-    --panel: #0d2038;
-    --input: #09182b;
-    --blue: #3389e8;
-    --cyan: #65d5ee;
-    --gold: #e7bd68;
-    --text: #f0f5fc;
-    --muted: #99aec7;
-    --border: rgba(143,177,216,.2);
-    --success: #83e3b7;
-    --danger: #ffaaaa;
-}
-* { box-sizing: border-box; }
-[hidden] { display: none !important; }
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: var(--text);
-    background:
-        radial-gradient(ellipse at 12% 25%, #15376170, transparent 42%),
-        radial-gradient(ellipse at 90% 75%, #116b8b24, transparent 40%),
-        var(--bg);
-    font-family: Inter, Arial, sans-serif;
-}
-button, input, select { font: inherit; }
-button, a, input, select { -webkit-tap-highlight-color: transparent; }
-button:focus-visible, a:focus-visible,
-input:focus-visible, select:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
-}
-.math-background {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-}
-.symbol {
-    position: absolute;
-    color: #82b8ef12;
-    user-select: none;
-}
-.s1 { top: 10%; left: 5%; font-size: 100px; }
-.s2 { top: 25%; right: 8%; font-size: 80px; }
-.s3 { bottom: 15%; left: 8%; font-size: 70px; }
-.s4 { bottom: 18%; right: 16%; font-size: 65px; }
-.s5 { top: 48%; left: 43%; font-size: 55px; }
-.s6 { top: 8%; right: 35%; font-size: 34px; }
-.s7 { top: 57%; right: 5%; font-size: 80px; }
-.s8 { bottom: 6%; left: 43%; font-size: 40px; }
-.s9 { top: 38%; left: 3%; font-size: 38px; }
-.s10 { top: 80%; right: 42%; font-size: 42px; }
-header, main, footer { position: relative; z-index: 1; }
-header {
-    min-height: 78px;
-    padding: 16px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    border-bottom: 1px solid var(--border);
-    background: #06102075;
-}
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
-.logo {
-    width: 39px;
-    height: 39px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #e7bd6880;
-    border-radius: 11px;
-    color: var(--gold);
-    background: #e7bd6810;
-    font: 32px Georgia, serif;
-}
-.brand-white { color: var(--text); }
-.portal-label { color: var(--muted); font-size: 11px; }
-main {
-    width: min(1100px, 92%);
-    margin: auto;
-    padding: 48px 0;
-    display: grid;
-    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-    gap: clamp(28px, 6vw, 80px);
-    align-items: center;
-}
-.intro .eyebrow {
-    color: var(--gold);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-.intro h1 {
-    margin: 22px 0 16px;
-    font-size: clamp(34px, 4vw, 49px);
-    line-height: 1.2;
-    letter-spacing: -2px;
-}
-.gradient { color: var(--cyan); }
-.intro p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.9;
-}
-.equation-card {
-    margin-top: 30px;
-    padding: 22px;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    background: #102b4970;
-}
-.equation-label {
-    color: #91adca;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-}
-.equation {
-    margin: 17px 0;
-    color: #eaf5ff;
-    text-align: center;
-    font: 50px Georgia, serif;
-}
-.features {
-    margin-top: 25px;
-    display: grid;
-    gap: 12px;
-    color: #c3d1e3;
-    font-size: 11px;
-}
-.features span::first-letter { color: var(--cyan); }
-.auth-card {
-    min-width: 0;
-    padding: clamp(22px, 3.5vw, 37px);
-    border: 1px solid var(--border);
-    border-radius: 21px;
-    background: #0c1e35f5;
-    box-shadow: 0 25px 80px #00000030;
-}
-.kicker {
-    margin-bottom: 10px;
-    color: var(--gold);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.7px;
-}
-h2 {
-    margin: 0 0 9px;
-    font-size: 25px;
-    letter-spacing: -.7px;
-}
-.description {
-    margin: 0 0 24px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.8;
-}
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 13px;
-}
-.field {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.full { grid-column: 1 / -1; }
-label {
-    color: #dce7f5;
-    font-size: 11px;
-    font-weight: 600;
-}
-.required { color: var(--gold); }
-.optional { color: #829ab5; font-weight: 400; }
-input, select {
-    width: 100%;
-    min-width: 0;
-    min-height: 45px;
-    padding: 11px 12px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    color: var(--text);
-    background: var(--input);
-    font-size: 12px;
-    transition: border-color .2s, box-shadow .2s;
-}
-input::placeholder { color: #657e9a; }
-input:focus, select:focus {
-    border-color: var(--cyan);
-    outline: none;
-    box-shadow: 0 0 0 3px #3389e822;
-}
-select:disabled { opacity: .7; cursor: not-allowed; }
-select option { color: var(--text); background: var(--panel); }
-.stage-field select { border-color: #65b6ee60; }
-.dynamic-section {
-    grid-column: 1 / -1;
-    min-width: 0;
-    padding: 17px;
-    border: 1px solid #65b6ee40;
-    border-radius: 12px;
-    background: #102b494c;
-    animation: reveal .2s ease-out;
-}
-.section-heading {
-    margin: 0 0 15px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    color: var(--cyan);
-    font-size: 12px;
-    font-weight: 800;
-}
-.section-heading::before {
-    content: "";
-    width: 3px;
-    height: 17px;
-    border-radius: 5px;
-    background: var(--gold);
-}
-.section-description {
-    margin: -7px 0 15px;
-    color: var(--muted);
-    font-size: 10px;
-    line-height: 1.7;
-}
-.dynamic-section .field + .field { margin-top: 15px; }
-@keyframes reveal {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.password-hint {
-    margin: 12px 0 18px;
-    color: #829ab5;
-    font-size: 10px;
-    line-height: 1.7;
-}
-.primary {
-    width: 100%;
-    min-height: 48px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border: 1px solid #f1d99a;
-    border-radius: 10px;
-    color: #152036;
-    background: linear-gradient(105deg, #e6bb68, #f1d99a);
-    font-size: 12px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: filter .2s, transform .2s;
-}
-.primary:hover:not(:disabled) {
-    filter: brightness(1.07);
-    transform: translateY(-1px);
-}
-.primary:disabled { opacity: .65; cursor: wait; }
-.switch-text {
-    margin: 20px 0 0;
-    color: var(--muted);
-    text-align: center;
-    font-size: 11px;
-    line-height: 1.8;
-}
-.text-button, .forgot-button, .notice-action {
-    padding: 0;
-    border: 0;
-    color: var(--gold);
-    background: transparent;
-    font-size: inherit;
-    font-weight: 700;
-    cursor: pointer;
-}
-.text-button:hover, .forgot-button:hover, .notice-action:hover {
-    text-decoration: underline;
-}
-.login-field + .login-field { margin-top: 17px; }
-.login-submit { margin-top: 22px; }
-.forgot-button {
-    display: block;
-    margin: 15px auto 0;
-    color: var(--cyan);
-    font-size: 11px;
-    font-weight: 500;
-}
-.notice {
-    margin: 0 0 20px;
-    padding: 13px;
-    border: 1px solid #65d5ee40;
-    border-radius: 9px;
-    color: #c9e8f6;
-    background: #2d779f20;
-    font-size: 11px;
-    line-height: 1.8;
-    overflow-wrap: anywhere;
-}
-.notice[data-type="success"] {
-    color: var(--success);
-    border-color: #83e3b750;
-    background: #28916720;
-}
-.notice[data-type="error"] {
-    color: var(--danger);
-    border-color: #ffaaaa50;
-    background: #b1363620;
-}
-.notice[data-type="info"] {
-    color: #f1dcae;
-    border-color: #e7bd6850;
-    background: #b1852e18;
-}
-.notice-action {
-    display: block;
-    margin-top: 8px;
-}
-.auth-footer {
-    margin-top: 24px;
-    padding-top: 17px;
-    border-top: 1px solid var(--border);
-    color: #829ab5;
-    text-align: center;
-    font-size: 9px;
-    line-height: 1.8;
-}
-footer {
-    padding: 17px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px 20px;
-    border-top: 1px solid var(--border);
-    background: #06102070;
-    font-size: 10px;
-}
-.copyright { color: #829ab5; }
-.help {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 7px;
-}
-.help strong { color: var(--gold); }
-.help a {
-    color: #e5cd96;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-}
-.help a:hover { text-decoration: underline; }
-@media (max-width: 850px) {
-    main {
-        width: min(560px, 92%);
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 36px 0;
-    }
-    .intro h1 { font-size: 38px; }
-    .equation-card { display: none; }
-    .features { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-    header { padding: 14px 4%; }
-    .brand { font-size: 15px; gap: 8px; }
-    .logo { width: 34px; height: 34px; }
-    .portal-label { font-size: 9px; }
-    main { width: 94%; padding: 25px 0; }
-    .intro h1 { font-size: 33px; }
-    .auth-card {
-        padding: 22px 16px;
-        border-radius: 15px;
-    }
-    .form-grid { grid-template-columns: 1fr; }
-    .full, .dynamic-section { grid-column: 1; }
-    .dynamic-section { padding: 14px; }
-    footer { flex-direction: column; align-items: flex-start; }
-    .help { justify-content: flex-start; }
-}
+:root{--bg:#071426;--panel:#0d2038;--input:#09182b;--blue:#3389e8;--cyan:#65d5ee;--gold:#e7bd68;--text:#f0f5fc;--muted:#99aec7;--border:rgba(143,177,216,.2);--success:#83e3b7;--danger:#ffaaaa}
+*{box-sizing:border-box} [hidden]{display:none!important}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--text);background:radial-gradient(ellipse at 12% 25%,#15376170,transparent 42%),radial-gradient(ellipse at 90% 75%,#116b8b24,transparent 40%),var(--bg);font-family:Inter,Arial,sans-serif}
+button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.math-background{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}.symbol{position:absolute;color:#82b8ef12;user-select:none}
+.s1{top:10%;left:5%;font-size:100px}.s2{top:25%;right:8%;font-size:80px}.s3{bottom:15%;left:8%;font-size:70px}.s4{bottom:18%;right:16%;font-size:65px}.s5{top:48%;left:43%;font-size:55px}.s6{top:8%;right:35%;font-size:34px}.s7{top:57%;right:5%;font-size:80px}.s8{bottom:6%;left:43%;font-size:40px}.s9{top:38%;left:3%;font-size:38px}.s10{top:80%;right:42%;font-size:42px}
+header,main,footer{position:relative;z-index:1}
+header{min-height:78px;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid var(--border);background:#06102075}
+.brand{display:flex;align-items:center;gap:11px;color:var(--gold);text-decoration:none;font-size:19px;font-weight:800;letter-spacing:-.5px}
+.logo{width:39px;height:39px;display:grid;place-items:center;border:1px solid #e7bd6880;border-radius:11px;color:var(--gold);background:#e7bd6810;font:32px Georgia,serif}.brand-white{color:var(--text)}.portal-label{color:var(--muted);font-size:11px}
+main{width:min(1100px,92%);margin:auto;padding:48px 0;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,6vw,80px);align-items:center}
+.intro .eyebrow{color:var(--gold);font-size:10px;font-weight:800;letter-spacing:2px}.intro h1{margin:22px 0 16px;font-size:clamp(34px,4vw,49px);line-height:1.2;letter-spacing:-2px}.gradient{color:var(--cyan)}
+.intro p{color:var(--muted);font-size:13px;line-height:1.9}.equation-card{margin-top:30px;padding:22px;border:1px solid var(--border);border-radius:16px;background:#102b4970}.equation-label{color:#91adca;font-size:9px;letter-spacing:1.5px}.equation{margin:17px 0;color:#eaf5ff;text-align:center;font:50px Georgia,serif}
+.features{margin-top:25px;display:grid;gap:12px;color:#c3d1e3;font-size:11px}.auth-card{min-width:0;padding:clamp(22px,3.5vw,37px);border:1px solid var(--border);border-radius:21px;background:#0c1e35f5;box-shadow:0 25px 80px #00000030}
+.kicker{margin-bottom:10px;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:1.7px}h2{margin:0 0 9px;font-size:25px;letter-spacing:-.7px}.description{margin:0 0 24px;color:var(--muted);font-size:12px;line-height:1.8}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 13px}.field{min-width:0;display:flex;flex-direction:column;gap:8px}.full{grid-column:1/-1}
+label{color:#dce7f5;font-size:11px;font-weight:600}.required{color:var(--gold)}.optional{color:#829ab5;font-weight:400}
+input,select{width:100%;min-width:0;min-height:45px;padding:11px 12px;border:1px solid var(--border);border-radius:9px;color:var(--text);background:var(--input);font-size:12px;transition:border-color .2s,box-shadow .2s}
+input::placeholder{color:#657e9a}input:focus,select:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px #3389e822}select:disabled{opacity:.7;cursor:not-allowed}select option{color:var(--text);background:var(--panel)}.stage-field select{border-color:#65b6ee60}
+.dynamic-section{grid-column:1/-1;min-width:0;padding:17px;border:1px solid #65b6ee40;border-radius:12px;background:#102b494c;animation:reveal .2s ease-out}
+.section-heading{margin:0 0 15px;display:flex;align-items:center;gap:9px;color:var(--cyan);font-size:12px;font-weight:800}.section-heading:before{content:"";width:3px;height:17px;border-radius:5px;background:var(--gold)}
+.section-description{margin:-7px 0 15px;color:var(--muted);font-size:10px;line-height:1.7}.dynamic-section .field+.field{margin-top:15px}
+@keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.password-hint{margin:12px 0 18px;color:#829ab5;font-size:10px;line-height:1.7}
+.primary{width:100%;min-height:48px;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid #f1d99a;border-radius:10px;color:#152036;background:linear-gradient(105deg,#e6bb68,#f1d99a);font-size:12px;font-weight:800;cursor:pointer;transition:filter .2s,transform .2s}
+.primary:hover:not(:disabled){filter:brightness(1.07);transform:translateY(-1px)}.primary:disabled{opacity:.65;cursor:wait}
+.switch-text{margin:20px 0 0;color:var(--muted);text-align:center;font-size:11px;line-height:1.8}
+.text-button,.forgot-button,.notice-action{padding:0;border:0;color:var(--gold);background:transparent;font-size:inherit;font-weight:700;cursor:pointer}.text-button:hover,.forgot-button:hover,.notice-action:hover{text-decoration:underline}
+.login-field+.login-field{margin-top:17px}.login-submit{margin-top:22px}.forgot-button{display:block;margin:15px auto 0;color:var(--cyan);font-size:11px;font-weight:500}
+.notice{margin:0 0 20px;padding:13px;border:1px solid #65d5ee40;border-radius:9px;color:#c9e8f6;background:#2d779f20;font-size:11px;line-height:1.8;overflow-wrap:anywhere}
+.notice[data-type=success]{color:var(--success);border-color:#83e3b750;background:#28916720}.notice[data-type=error]{color:var(--danger);border-color:#ffaaaa50;background:#b1363620}.notice[data-type=info]{color:#f1dcae;border-color:#e7bd6850;background:#b1852e18}
+.notice-action{display:block;margin-top:8px}.auth-footer{margin-top:24px;padding-top:17px;border-top:1px solid var(--border);color:#829ab5;text-align:center;font-size:9px;line-height:1.8}
+footer{padding:17px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 20px;border-top:1px solid var(--border);background:#06102070;font-size:10px}.copyright{color:#829ab5}
+.help{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:7px}.help strong{color:var(--gold)}.help a{color:#e5cd96;text-decoration:none;overflow-wrap:anywhere}.help a:hover{text-decoration:underline}
+@media(max-width:850px){main{width:min(560px,92%);grid-template-columns:1fr;gap:30px;padding:36px 0}.intro h1{font-size:38px}.equation-card{display:none}.features{grid-template-columns:1fr}}
+@media(max-width:480px){header{padding:14px 4%}.brand{font-size:15px;gap:8px}.logo{width:34px;height:34px}.portal-label{font-size:9px}main{width:94%;padding:25px 0}.intro h1{font-size:33px}.auth-card{padding:22px 16px;border-radius:15px}.form-grid{grid-template-columns:1fr}.full,.dynamic-section{grid-column:1}.dynamic-section{padding:14px}footer{flex-direction:column;align-items:flex-start}.help{justify-content:flex-start}}
 </style>
 </head>
-
 <body>
-
 <div class="math-background" aria-hidden="true">
-    <span class="symbol s1">∫</span>
-    <span class="symbol s2">∑</span>
-    <span class="symbol s3">π</span>
-    <span class="symbol s4">∞</span>
-    <span class="symbol s5">√x</span>
-    <span class="symbol s6">f(x)</span>
-    <span class="symbol s7">∂</span>
-    <span class="symbol s8">Δ</span>
-    <span class="symbol s9">x²</span>
-    <span class="symbol s10">dy/dx</span>
+<span class="symbol s1">∫</span><span class="symbol s2">∑</span><span class="symbol s3">π</span><span class="symbol s4">∞</span><span class="symbol s5">√x</span><span class="symbol s6">f(x)</span><span class="symbol s7">∂</span><span class="symbol s8">Δ</span><span class="symbol s9">x²</span><span class="symbol s10">dy/dx</span>
 </div>
-
-<header>
-    <a href="#" class="brand">
-        <span class="logo">∫</span>
-        <span>Mh.S <span class="brand-white">Mathematics</span></span>
-    </a>
-    <span class="portal-label">Student Portal</span>
-</header>
-
+<header><a href="#" class="brand"><span class="logo">∫</span><span>Mh.S <span class="brand-white">Mathematics</span></span></a><span class="portal-label">Student Portal</span></header>
 <main>
-    <section class="intro">
-        <div class="eyebrow">YOUR MATHEMATICS JOURNEY</div>
-
-        <h1> Maths Understood,<br>
-            <span class="gradient">Not Memorised.</span>
-        </h1>
-
-        <p>
-            Your mathematics learning starts here.
-            Create your student account to get started.
-        </p>
-
-        <div class="equation-card">
-            <div class="equation-label">THE BEAUTY OF MATHEMATICS</div>
-            <div class="equation">∫ₐᵇ f(x) dx</div>
-            <p>Every difficult problem begins with a first step.</p>
-        </div>
-
-        <div class="features">
-            <span>✓ Personal student access</span>
-            <span>✓ Your course details in one place</span>
-            <span>✓ Email-based authentication</span>
-        </div>
-    </section>
-
-    <section class="auth-card">
-        <div class="kicker" id="kicker">CREATE YOUR ACCOUNT</div>
-        <h2 id="heading">Join Mh.S Mathematics</h2>
-        <p class="description" id="description">
-            Enter your details to create your student account.
-        </p>
-
-        <div id="notice" class="notice" role="status"
-             aria-live="polite" hidden>
-            <div id="notice-text"></div>
-            <button type="button" id="notice-action"
-                    class="notice-action" hidden>Log in</button>
-        </div>
-
-        <form id="signup-form">
-            <div class="form-grid">
-
-                <div class="field full">
-                    <label for="full-name">Full name <span class="required">*</span></label>
-                    <input id="full-name" name="full_name"
-                           type="text" autocomplete="name"
-                           maxlength="100" placeholder="Enter your full name"
-                           required>
-                </div>
-
-                <div class="field full">
-                    <label for="signup-email">Email address <span class="required">*</span></label>
-                    <input id="signup-email" name="email"
-                           type="email" autocomplete="email"
-                           maxlength="254" placeholder="you@example.com"
-                           required>
-                </div>
-
-                <div class="field full">
-                    <label for="phone">Phone number <span class="optional">(optional)</span></label>
-                    <input id="phone" name="phone" type="tel"
-                           autocomplete="tel" placeholder="Your phone number">
-                </div>
-
-                <div class="field stage-field full">
-                    <label for="stage">Stage <span class="required">*</span></label>
-                    <select id="stage" name="stage" required>
-                        <option value="" selected disabled>Choose your stage</option>
-                        <option value="IGCSE">IGCSE</option>
-                        <option value="A Level">A Level</option>
-                    </select>
-                </div>
-
-                <section id="igcse-section" class="dynamic-section" hidden>
-                    <h3 class="section-heading">IGCSE Section</h3>
-                    <p class="section-description">
-                        Select the IGCSE mathematics course you study.
-                    </p>
-
-                    <div class="field">
-                        <label for="igcse-maths">Mathematics type <span class="required">*</span></label>
-                        <select id="igcse-maths" name="igcse_maths" disabled>
-                            <option value="" selected disabled>Select mathematics type</option>
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="Additional Mathematics">Additional Mathematics</option>
-                        </select>
-                    </div>
-                </section>
-
-                <section id="alevel-section" class="dynamic-section" hidden>
-                    <h3 class="section-heading">A Level Section</h3>
-                    <p class="section-description">
-                        First select your qualification level, then choose your mathematics course.
-                    </p>
-
-                    <div class="field">
-                        <label for="qualification">
-                            A Level type <span class="required">*</span>
-                        </label>
-                        <select id="qualification" name="qualification_type" disabled>
-                            <option value="" selected disabled>Select A Level type</option>
-                            <option value="Advanced Subsidiary">Advanced Subsidiary (AS)</option>
-                            <option value="Advanced 2">Advanced 2 (A2)</option>
-                            <option value="Full Advanced Level">Full A Level</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="alevel-maths">
-                            Mathematics type <span class="required">*</span>
-                        </label>
-                        <select id="alevel-maths" name="alevel_maths" disabled>
-                            <option value="" selected disabled>Select mathematics type</option>
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="Further Mathematics">Further Mathematics</option>
-                        </select>
-                    </div>
-                </section>
-
-                <div class="field full">
-                    <label for="board">Exam board <span class="required">*</span></label>
-                    <select id="board" name="board" required>
-                        <option value="" selected disabled>Select your exam board</option>
-                        <option value="Cambridge">Cambridge International</option>
-                        <option value="Pearson Edexcel">Pearson Edexcel</option>
-                        <option value="AQA Oxford">AQA Oxford</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="signup-password">Password <span class="required">*</span></label>
-                    <input id="signup-password" name="password"
-                           type="password" autocomplete="new-password"
-                           minlength="8" placeholder="At least 8 characters"
-                           required>
-                </div>
-
-                <div class="field">
-                    <label for="confirm-password">Confirm password <span class="required">*</span></label>
-                    <input id="confirm-password" name="confirm_password"
-                           type="password" autocomplete="new-password"
-                           minlength="8" placeholder="Repeat password"
-                           required>
-                </div>
-            </div>
-
-            <p class="password-hint">
-                Use at least 8 characters. Never share your password.
-            </p>
-
-            <button class="primary" id="signup-button" type="submit">
-                <span id="signup-button-label">Create Account</span> →
-            </button>
-
-            <p class="switch-text">
-                Already have an account?
-                <button type="button" class="text-button" id="show-login">
-                    Log in
-                </button>
-            </p>
-        </form>
-
-        <form id="login-form" hidden>
-            <div class="field login-field">
-                <label for="login-email">Email address <span class="required">*</span></label>
-                <input id="login-email" name="email" type="email"
-                       autocomplete="email" placeholder="you@example.com"
-                       required>
-            </div>
-
-            <div class="field login-field">
-                <label for="login-password">Password <span class="required">*</span></label>
-                <input id="login-password" name="password"
-                       type="password" autocomplete="current-password"
-                       placeholder="Enter your password" required>
-            </div>
-
-            <button class="primary login-submit" id="login-button" type="submit">
-                <span id="login-button-label">Log In</span> →
-            </button>
-
-            <button type="button" id="forgot-password" class="forgot-button">
-                Forgot your password?
-            </button>
-
-            <p class="switch-text">
-                New to Mh.S Mathematics?
-                <button type="button" class="text-button" id="show-signup">
-                    Create an account
-                </button>
-            </p>
-        </form>
-
-        <div class="auth-footer">
-            ◇ Account authentication is handled by Supabase.
-        </div>
-    </section>
+<section class="intro">
+<div class="eyebrow">YOUR MATHEMATICS JOURNEY</div>
+<h1>Maths Understood,<br><span class="gradient">Not Memorised.</span></h1>
+<p>Apply to join Mh.S Mathematics. Your details will be reviewed by your teacher before student access is approved.</p>
+<div class="equation-card"><div class="equation-label">THE BEAUTY OF MATHEMATICS</div><div class="equation">∫ₐᵇ f(x) dx</div><p>Every difficult problem begins with a first step.</p></div>
+<div class="features"><span>✓ Teacher-approved student access</span><span>✓ Your course details in one place</span><span>✓ Private application reference</span></div>
+</section>
+<section class="auth-card">
+<div class="kicker" id="kicker">STUDENT APPLICATION</div>
+<h2 id="heading">Apply to join</h2>
+<p class="description" id="description">Complete the form below. Your application will remain pending until your teacher reviews it.</p>
+<div id="notice" class="notice" role="status" aria-live="polite" hidden><div id="notice-text"></div><button type="button" id="notice-action" class="notice-action" hidden>Copy reference</button></div>
+<form id="signup-form">
+<div class="form-grid">
+<div class="field full"><label for="full-name">Full name <span class="required">*</span></label><input id="full-name" name="full_name" type="text" autocomplete="name" maxlength="100" placeholder="Enter your full name" required></div>
+<div class="field full"><label for="signup-email">Email address <span class="required">*</span></label><input id="signup-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></div>
+<div class="field full"><label for="phone">Phone number <span class="required">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="Your phone number" required></div>
+<div class="field stage-field full"><label for="stage">Stage <span class="required">*</span></label><select id="stage" name="stage" required><option value="" selected disabled>Choose your stage</option><option value="IGCSE">IGCSE</option><option value="A Level">A Level</option></select></div>
+<section id="igcse-section" class="dynamic-section" hidden><h3 class="section-heading">IGCSE Section</h3><p class="section-description">Select the IGCSE mathematics course you study.</p><div class="field"><label for="igcse-maths">Mathematics type <span class="required">*</span></label><select id="igcse-maths" name="igcse_maths" disabled><option value="" selected disabled>Select mathematics type</option><option value="Mathematics">Mathematics</option><option value="Additional Mathematics">Additional Mathematics</option></select></div></section>
+<section id="alevel-section" class="dynamic-section" hidden><h3 class="section-heading">A Level Section</h3><p class="section-description">Choose your qualification level and mathematics course.</p><div class="field"><label for="qualification">A Level type <span class="required">*</span></label><select id="qualification" name="qualification_type" disabled><option value="" selected disabled>Select A Level type</option><option value="AS">Advanced Subsidiary (AS)</option><option value="A2">Advanced 2 (A2)</option><option value="Full A Level">Full A Level</option></select></div><div class="field"><label for="alevel-maths">Mathematics type <span class="required">*</span></label><select id="alevel-maths" name="alevel_maths" disabled><option value="" selected disabled>Select mathematics type</option><option value="Mathematics">Mathematics</option><option value="Further Mathematics">Further Mathematics</option></select></div></section>
+<div class="field full"><label for="board">Exam board <span class="required">*</span></label><select id="board" name="board" required><option value="" selected disabled>Select your exam board</option><option value="Cambridge">Cambridge International</option><option value="Pearson Edexcel">Pearson Edexcel</option><option value="AQA Oxford">AQA Oxford</option></select></div>
+<div class="field full"><label for="exam-session">Exam session <span class="required">*</span></label><select id="exam-session" name="exam_session" required><option value="" selected disabled>Select your exam session</option><option value="May/June">May/June</option><option value="October/November">October/November</option><option value="February/March">February/March</option></select></div>
+</div>
+<p class="password-hint">Please keep the application reference shown after submission. You will not be able to log in until your teacher has approved your application and created your access.</p>
+<button class="primary" id="signup-button" type="submit"><span id="signup-button-label">Submit Application</span> →</button>
+<p class="switch-text">Already have an account? <button type="button" class="text-button" id="show-login">Log in</button></p>
+</form>
+<form id="login-form" hidden>
+<div class="field login-field"><label for="login-email">Email address <span class="required">*</span></label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+<div class="field login-field"><label for="login-password">Password <span class="required">*</span></label><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></div>
+<button class="primary login-submit" id="login-button" type="submit"><span id="login-button-label">Log In</span> →</button>
+<button type="button" id="forgot-password" class="forgot-button">Forgot your password?</button>
+<p class="switch-text">Need to apply? <button type="button" class="text-button" id="show-signup">Submit an application</button></p>
+</form>
+<div class="auth-footer">◇ Account authentication is handled by Supabase.</div>
+</section>
 </main>
-
-<footer>
-    <div class="copyright">
-        © <span id="year"></span> Mh.S Mathematics
-    </div>
-    <div class="help">
-        <strong>Need Help?</strong>
-        <a href="mailto:Mh.SMathematicsTutor@gmail.com">
-            Mh.SMathematicsTutor@gmail.com
-        </a>
-        <span>|</span>
-        <a href="tel:01272072109">01272072109</a>
-    </div>
-</footer>
-
+<footer><div class="copyright">© <span id="year"></span> Mh.S Mathematics</div><div class="help"><strong>Need Help?</strong><a href="mailto:Mh.SMathematicsTutor@gmail.com">Mh.SMathematicsTutor@gmail.com</a><span>|</span><a href="tel:01272072109">01272072109</a></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 "use strict";
-
-/* =========================================================
-   SUPABASE CONFIGURATION
-   Use the same project URL and public/anon key as the dashboard.
-   Never use a service-role or secret key in browser code.
-   ========================================================= */
-
 const SUPABASE_URL = "https://usnxjwapsfyuqnvuysjs.supabase.co";
 const SUPABASE_PUBLIC_KEY = "sb_publishable_22p3G6H5F7wNmobahYtONA_7pzdHXHG";
-
 const DASHBOARD_URL = new URL("student-dashboard.html", window.location.href).href;
-
-let db = null;
-let redirecting = false;
-let authListener = null;
-
-if (
-    window.supabase &&
-    SUPABASE_URL.startsWith("https://") &&
-    !SUPABASE_URL.includes("YOUR_SUPABASE") &&
-    SUPABASE_PUBLIC_KEY &&
-    !SUPABASE_PUBLIC_KEY.includes("YOUR_SUPABASE")
-) {
-    db = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLIC_KEY,
-        {
-            auth: {
-                persistSession: true,
-                autoRefreshToken: true,
-                detectSessionInUrl: true
-            }
-        }
-    );
+let db = null, redirecting = false, noticeActionCallback = null;
+if (window.supabase && SUPABASE_URL.startsWith("https://") && SUPABASE_PUBLIC_KEY) {
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 }
-
-/* =========================================================
-   ELEMENTS
-   ========================================================= */
-
 const $ = id => document.getElementById(id);
-
-const signupForm = $("signup-form");
-const loginForm = $("login-form");
-
-const stageSelect = $("stage");
-const igcseSection = $("igcse-section");
-const alevelSection = $("alevel-section");
-
-const igcseMaths = $("igcse-maths");
-const qualification = $("qualification");
-const alevelMaths = $("alevel-maths");
-
-const notice = $("notice");
-const noticeText = $("notice-text");
-const noticeAction = $("notice-action");
-
-let noticeActionCallback = null;
-
+const signupForm = $("signup-form"), loginForm = $("login-form");
+const stageSelect = $("stage"), igcseSection = $("igcse-section"), alevelSection = $("alevel-section");
+const igcseMaths = $("igcse-maths"), qualification = $("qualification"), alevelMaths = $("alevel-maths");
+const notice = $("notice"), noticeText = $("notice-text"), noticeAction = $("notice-action");
 $("year").textContent = new Date().getFullYear();
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-function goToDashboard() {
-    if (redirecting) return;
-    redirecting = true;
-    window.location.replace(DASHBOARD_URL);
+function goToDashboard(){if(redirecting)return;redirecting=true;window.location.replace(DASHBOARD_URL);}
+function isPasswordRecoveryUrl(){const params=new URLSearchParams(window.location.hash.replace(/^#/,""));return params.get("type")==="recovery";}
+function showNotice(message,type="info",actionLabel="",callback=null){notice.hidden=false;notice.dataset.type=type;noticeText.textContent=message;noticeActionCallback=callback;if(actionLabel&&callback){noticeAction.textContent=actionLabel;noticeAction.hidden=false;}else{noticeAction.hidden=true;}}
+function hideNotice(){notice.hidden=true;noticeText.textContent="";noticeAction.hidden=true;noticeActionCallback=null;delete notice.dataset.type;}
+noticeAction.addEventListener("click",()=>{if(typeof noticeActionCallback==="function")noticeActionCallback();});
+signupForm.addEventListener("input",hideNotice);loginForm.addEventListener("input",hideNotice);
+function updateStageSections(){
+ const stage=stageSelect.value;igcseSection.hidden=true;alevelSection.hidden=true;
+ igcseMaths.disabled=true;igcseMaths.required=false;igcseMaths.value="";
+ qualification.disabled=true;qualification.required=false;qualification.value="";
+ alevelMaths.disabled=true;alevelMaths.required=false;alevelMaths.value="";
+ if(stage==="IGCSE"){igcseSection.hidden=false;igcseMaths.disabled=false;igcseMaths.required=true;}
+ if(stage==="A Level"){alevelSection.hidden=false;qualification.disabled=false;qualification.required=true;alevelMaths.disabled=false;alevelMaths.required=true;}
 }
-
-function isPasswordRecoveryUrl() {
-    const params = new URLSearchParams(window.location.hash.replace(/^#/, ""));
-    return params.get("type") === "recovery";
+stageSelect.addEventListener("change",updateStageSections);updateStageSections();
+function switchToLogin(email=""){
+ signupForm.hidden=true;loginForm.hidden=false;$("kicker").textContent="STUDENT LOGIN";$("heading").textContent="Welcome back";
+ $("description").textContent="Log in to your Mh.S Mathematics account.";
+ if(email)$("login-email").value=email;else if($("signup-email").value.trim())$("login-email").value=$("signup-email").value.trim();
+ hideNotice();$("login-email").focus({preventScroll:true});
 }
-
-/* =========================================================
-   NOTICES
-   ========================================================= */
-
-function showNotice(message, type = "info", actionLabel = "", callback = null) {
-    notice.hidden = false;
-    notice.dataset.type = type;
-    noticeText.textContent = message;
-
-    noticeActionCallback = callback;
-
-    if (actionLabel && callback) {
-        noticeAction.textContent = actionLabel;
-        noticeAction.hidden = false;
-    } else {
-        noticeAction.hidden = true;
-    }
+function switchToSignup(email=""){
+ loginForm.hidden=true;signupForm.hidden=false;$("kicker").textContent="STUDENT APPLICATION";$("heading").textContent="Apply to join";
+ $("description").textContent="Complete the form below. Your application will remain pending until your teacher reviews it.";
+ if(email)$("signup-email").value=email;hideNotice();$("signup-email").focus({preventScroll:true});
 }
-
-function hideNotice() {
-    notice.hidden = true;
-    noticeText.textContent = "";
-    noticeAction.hidden = true;
-    noticeActionCallback = null;
-    delete notice.dataset.type;
+$("show-login").addEventListener("click",()=>switchToLogin());$("show-signup").addEventListener("click",()=>switchToSignup());
+function setLoading(button,label,loading,normalText,busyText){button.disabled=loading;label.textContent=loading?busyText:normalText;button.setAttribute("aria-busy",String(loading));}
+function ensureDatabase(){if(!db){showNotice("Supabase is not configured. Check the project URL and public key in index.html.","error");return false;}return true;}
+function getAuthError(error){
+ const message=String(error?.message||"").toLowerCase();
+ if(message.includes("invalid login credentials"))return "The email or password is incorrect. Please check your details.";
+ if(message.includes("email not confirmed"))return "Please confirm your email using the link sent to your inbox.";
+ if(message.includes("rate limit")||message.includes("too many requests"))return "Too many attempts. Please wait and try again.";
+ if(message.includes("failed to fetch")||message.includes("network"))return "Connection failed. Check your internet connection and try again.";
+ return error?.message||"We could not complete your request. Please try again.";
 }
-
-noticeAction.addEventListener("click", () => {
-    if (typeof noticeActionCallback === "function") {
-        noticeActionCallback();
-    }
+signupForm.addEventListener("submit",async event=>{
+ event.preventDefault();if(!signupForm.reportValidity())return;
+ const fullName=$("full-name").value.trim(),email=$("signup-email").value.trim(),phone=$("phone").value.trim();
+ const stage=stageSelect.value,board=$("board").value,examSession=$("exam-session").value;
+ let mathsType="",qualificationType=null;
+ if(stage==="IGCSE"){mathsType=igcseMaths.value;if(!mathsType){showNotice("Please choose your IGCSE mathematics type.","error");igcseMaths.focus();return;}}
+ else if(stage==="A Level"){qualificationType=qualification.value;mathsType=alevelMaths.value;if(!qualificationType){showNotice("Please choose AS, A2, or Full A Level.","error");qualification.focus();return;}if(!mathsType){showNotice("Please choose Mathematics or Further Mathematics.","error");alevelMaths.focus();return;}}
+ else{showNotice("Please select IGCSE or A Level.","error");stageSelect.focus();return;}
+ if(!fullName||!email||!phone||!examSession){showNotice("Please complete all required fields.","error");return;}
+ if(!ensureDatabase())return;
+ const button=$("signup-button");setLoading(button,$("signup-button-label"),true,"Submit Application","Submitting...");
+ try{
+   const trackingToken=crypto.randomUUID();
+   const application={full_name:fullName,email,phone,stage,maths_type:mathsType,qualification_type:qualificationType,board,exam_session:examSession,status:"Pending",tracking_token:trackingToken};
+   const {error}=await db.from("student_applications").insert(application);
+   if(error){
+     console.error("Application submission error:",error);
+     if(error.code==="23505"){showNotice("An application with this email may already be pending. If you have already applied, keep your reference safe and wait for your teacher to review it.","info");}
+     else if(error.code==="42501"||String(error.message||"").toLowerCase().includes("row-level security")){showNotice("The application could not be submitted because of a database permission policy. Please tell the site administrator to check the student_applications insert policy.","error");}
+     else{showNotice("Your application could not be submitted. Please check your connection and try again. If this continues, contact your teacher.","error");}
+     return;
+   }
+   signupForm.reset();updateStageSections();
+   showNotice("Application submitted successfully and is awaiting teacher approval. Save this private tracking reference: "+trackingToken,"success","Copy reference",()=>{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(trackingToken).then(()=>showNotice("Application submitted. Your tracking reference has been copied: "+trackingToken,"success")).catch(()=>showNotice("Please copy and save this tracking reference: "+trackingToken,"success"));}else{showNotice("Please copy and save this tracking reference: "+trackingToken,"success");}});
+ }catch(error){console.error("Unexpected application error:",error);showNotice("Something went wrong while submitting your application. Please try again.","error");}
+ finally{setLoading(button,$("signup-button-label"),false,"Submit Application","Submitting...");}
 });
-
-signupForm.addEventListener("input", hideNotice);
-loginForm.addEventListener("input", hideNotice);
-
-/* =========================================================
-   STAGE AND MATHEMATICS SELECTION
-   ========================================================= */
-
-function updateStageSections() {
-    const stage = stageSelect.value;
-
-    igcseSection.hidden = true;
-    alevelSection.hidden = true;
-
-    igcseMaths.disabled = true;
-    igcseMaths.required = false;
-    igcseMaths.value = "";
-
-    qualification.disabled = true;
-    qualification.required = false;
-    qualification.value = "";
-
-    alevelMaths.disabled = true;
-    alevelMaths.required = false;
-    alevelMaths.value = "";
-
-    if (stage === "IGCSE") {
-        igcseSection.hidden = false;
-        igcseMaths.disabled = false;
-        igcseMaths.required = true;
-    }
-
-    if (stage === "A Level") {
-        alevelSection.hidden = false;
-
-        qualification.disabled = false;
-        qualification.required = true;
-
-        alevelMaths.disabled = false;
-        alevelMaths.required = true;
-    }
-}
-
-stageSelect.addEventListener("change", updateStageSections);
-updateStageSections();
-
-/* =========================================================
-   SWITCH BETWEEN LOGIN AND REGISTRATION
-   ========================================================= */
-
-function switchToLogin(email = "") {
-    signupForm.hidden = true;
-    loginForm.hidden = false;
-
-    $("kicker").textContent = "STUDENT LOGIN";
-    $("heading").textContent = "Welcome back";
-    $("description").textContent =
-        "Log in to your Mh.S Mathematics account.";
-
-    if (email) {
-        $("login-email").value = email;
-    } else if ($("signup-email").value.trim()) {
-        $("login-email").value = $("signup-email").value.trim();
-    }
-
-    hideNotice();
-    $("login-email").focus({ preventScroll: true });
-}
-
-function switchToSignup(email = "") {
-    loginForm.hidden = true;
-    signupForm.hidden = false;
-
-    $("kicker").textContent = "CREATE YOUR ACCOUNT";
-    $("heading").textContent = "Join Mh.S Mathematics";
-    $("description").textContent =
-        "Enter your details to create your student account.";
-
-    if (email) {
-        $("signup-email").value = email;
-    }
-
-    hideNotice();
-    $("signup-email").focus({ preventScroll: true });
-}
-
-$("show-login").addEventListener("click", () => switchToLogin());
-$("show-signup").addEventListener("click", () => switchToSignup());
-
-/* =========================================================
-   LOADING STATES AND CONFIGURATION
-   ========================================================= */
-
-function setLoading(button, labelElement, loading, normalText, busyText) {
-    button.disabled = loading;
-    labelElement.textContent = loading ? busyText : normalText;
-    button.setAttribute("aria-busy", String(loading));
-}
-
-function ensureDatabase() {
-    if (!db) {
-        showNotice(
-            "Supabase is not configured. Add your project URL and public key in the script at the bottom of index.html.",
-            "error"
-        );
-        return false;
-    }
-
-    return true;
-}
-
-/* =========================================================
-   FRIENDLIER AUTHENTICATION ERRORS
-   ========================================================= */
-
-function getAuthError(error) {
-    const message = String(error?.message || "").toLowerCase();
-
-    if (message.includes("invalid login credentials")) {
-        return "The email or password is incorrect. Please check your details.";
-    }
-
-    if (message.includes("email not confirmed")) {
-        return "Please confirm your email using the link sent to your inbox.";
-    }
-
-    if (
-        message.includes("already registered") ||
-        message.includes("already been registered") ||
-        message.includes("user already exists") ||
-        message.includes("already exists")
-    ) {
-        return "This email is already registered. Please log in instead.";
-    }
-
-    if (
-        message.includes("password") &&
-        (message.includes("weak") || message.includes("short"))
-    ) {
-        return "Your password does not meet the password requirements.";
-    }
-
-    if (message.includes("rate limit") || message.includes("too many requests")) {
-        return "Too many attempts. Please wait and try again.";
-    }
-
-    if (message.includes("failed to fetch") || message.includes("network")) {
-        return "Connection failed. Check your internet connection and try again.";
-    }
-
-    return error?.message || "We could not complete your request. Please try again.";
-}
-
-/* =========================================================
-   REGISTRATION
-   ========================================================= */
-
-signupForm.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (!signupForm.reportValidity()) return;
-
-    const fullName = $("full-name").value.trim();
-    const email = $("signup-email").value.trim();
-    const phone = $("phone").value.trim();
-    const stage = stageSelect.value;
-    const board = $("board").value;
-    const password = $("signup-password").value;
-    const confirmPassword = $("confirm-password").value;
-
-    let mathsType = "";
-    let qualificationType = null;
-
-    if (stage === "IGCSE") {
-        mathsType = igcseMaths.value;
-
-        if (!mathsType) {
-            showNotice("Please choose your IGCSE mathematics type.", "error");
-            igcseMaths.focus();
-            return;
-        }
-    } else if (stage === "A Level") {
-        qualificationType = qualification.value;
-        mathsType = alevelMaths.value;
-
-        if (!qualificationType) {
-            showNotice("Please choose AS, A2, or Full A Level.", "error");
-            qualification.focus();
-            return;
-        }
-
-        if (!mathsType) {
-            showNotice("Please choose Mathematics or Further Mathematics.", "error");
-            alevelMaths.focus();
-            return;
-        }
-    } else {
-        showNotice("Please select IGCSE or A Level.", "error");
-        stageSelect.focus();
-        return;
-    }
-
-    if (!fullName) {
-        showNotice("Please enter your full name.", "error");
-        $("full-name").focus();
-        return;
-    }
-
-    if (password.length < 8) {
-        showNotice("Your password must contain at least 8 characters.", "error");
-        $("signup-password").focus();
-        return;
-    }
-
-    if (password !== confirmPassword) {
-        showNotice("Your passwords do not match.", "error");
-        $("confirm-password").focus();
-        return;
-    }
-
-    if (!ensureDatabase()) return;
-
-    const button = $("signup-button");
-
-    setLoading(
-        button,
-        $("signup-button-label"),
-        true,
-        "Create Account",
-        "Creating account..."
-    );
-
-    try {
-        const { data, error } = await db.auth.signUp({
-            email,
-            password,
-            options: {
-                data: {
-                    full_name: fullName,
-                    phone: phone || null,
-                    stage,
-                    qualification_type: qualificationType,
-                    maths_type: mathsType,
-                    board
-                },
-                emailRedirectTo: window.location.href.split("#")[0].split("?")[0]
-            }
-        });
-
-        if (error) {
-            const message = String(error.message || "").toLowerCase();
-
-            if (
-                message.includes("already registered") ||
-                message.includes("already been registered") ||
-                message.includes("user already exists") ||
-                message.includes("already exists")
-            ) {
-                switchToLogin(email);
-                showNotice(
-                    "This email is already registered. Please log in instead.",
-                    "info"
-                );
-                return;
-            }
-
-            showNotice(getAuthError(error), "error");
-            console.error("Registration error:", error.message);
-            return;
-        }
-
-        if (
-            data?.user &&
-            Array.isArray(data.user.identities) &&
-            data.user.identities.length === 0
-        ) {
-            switchToLogin(email);
-            showNotice(
-                "This email may already be registered. Try logging in or resetting your password.",
-                "info"
-            );
-            return;
-        }
-
-        if (data?.session) {
-            showNotice(
-                "Your account has been created successfully. Opening your dashboard...",
-                "success"
-            );
-
-            goToDashboard();
-            return;
-        }
-
-        // Email confirmation is required when Supabase does not return a session.
-        switchToLogin(email);
-        showNotice(
-            "Your registration was submitted. Check your email and click the confirmation link. Once confirmed, your session will take you to the student dashboard. If it does not open automatically, log in here.",
-            "success"
-        );
-    } catch (error) {
-        console.error("Unexpected registration error:", error);
-        showNotice(getAuthError(error), "error");
-    } finally {
-        setLoading(
-            button,
-            $("signup-button-label"),
-            false,
-            "Create Account",
-            "Creating account..."
-        );
-    }
+loginForm.addEventListener("submit",async event=>{
+ event.preventDefault();if(!loginForm.reportValidity()||!ensureDatabase())return;
+ const email=$("login-email").value.trim(),password=$("login-password").value,button=$("login-button");
+ setLoading(button,$("login-button-label"),true,"Log In","Logging in...");
+ try{
+  const {data,error}=await db.auth.signInWithPassword({email,password});
+  if(error){showNotice(getAuthError(error),"error");return;}
+  if(data?.session){showNotice("Login successful. Opening your dashboard...","success");goToDashboard();}
+  else showNotice("No active session was created. Please try logging in again.","error");
+ }catch(error){console.error("Login error:",error);showNotice(getAuthError(error),"error");}
+ finally{setLoading(button,$("login-button-label"),false,"Log In","Logging in...");}
 });
-
-/* =========================================================
-   LOGIN
-   ========================================================= */
-
-loginForm.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (!loginForm.reportValidity()) return;
-    if (!ensureDatabase()) return;
-
-    const email = $("login-email").value.trim();
-    const password = $("login-password").value;
-    const button = $("login-button");
-
-    setLoading(
-        button,
-        $("login-button-label"),
-        true,
-        "Log In",
-        "Logging in..."
-    );
-
-    try {
-        const { data, error } = await db.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if (error) {
-            showNotice(getAuthError(error), "error");
-            return;
-        }
-
-        if (data?.session) {
-            showNotice("Login successful. Opening your dashboard...", "success");
-            goToDashboard();
-        } else {
-            showNotice(
-                "No active session was created. Please try logging in again.",
-                "error"
-            );
-        }
-    } catch (error) {
-        console.error("Login error:", error);
-        showNotice(getAuthError(error), "error");
-    } finally {
-        setLoading(
-            button,
-            $("login-button-label"),
-            false,
-            "Log In",
-            "Logging in..."
-        );
-    }
+$("forgot-password").addEventListener("click",async()=>{
+ if(!ensureDatabase())return;const email=$("login-email").value.trim();
+ if(!email||!$("login-email").checkValidity()){showNotice("Enter a valid email address first.","info");$("login-email").focus();return;}
+ const button=$("forgot-password");button.disabled=true;button.textContent="Sending...";
+ try{
+  const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.href.split("#")[0].split("?")[0]});
+  if(error)showNotice(getAuthError(error),"error");else showNotice("If an account exists for that address, a password reset email will be sent. Check your inbox and spam folder.","success");
+ }catch(error){console.error("Password reset error:",error);showNotice(getAuthError(error),"error");}
+ finally{button.disabled=false;button.textContent="Forgot your password?";}
 });
-
-/* =========================================================
-   PASSWORD RESET EMAIL
-   ========================================================= */
-
-$("forgot-password").addEventListener("click", async () => {
-    if (!ensureDatabase()) return;
-
-    const email = $("login-email").value.trim();
-
-    if (!email || !$("login-email").checkValidity()) {
-        showNotice("Enter a valid email address first.", "info");
-        $("login-email").focus();
-        return;
-    }
-
-    const button = $("forgot-password");
-    button.disabled = true;
-    button.textContent = "Sending...";
-
-    try {
-        const { error } = await db.auth.resetPasswordForEmail(email, {
-            redirectTo: window.location.href.split("#")[0].split("?")[0]
-        });
-
-        if (error) {
-            showNotice(getAuthError(error), "error");
-        } else {
-            showNotice(
-                "If an account exists for that address, a password reset email will be sent. Check your inbox and spam folder.",
-                "success"
-            );
-        }
-    } catch (error) {
-        console.error("Password reset error:", error);
-        showNotice(getAuthError(error), "error");
-    } finally {
-        button.disabled = false;
-        button.textContent = "Forgot your password?";
-    }
-});
-
-/* =========================================================
-   EXISTING SESSION AND EMAIL CONFIRMATION
-   ========================================================= */
-
-async function restoreSession() {
-    if (!db) return;
-
-    // Do not redirect a password-recovery link away from its destination.
-    if (isPasswordRecoveryUrl()) {
-        showNotice(
-            "Password recovery link detected. The link has returned to the portal, but a password-update form is not yet implemented.",
-            "info"
-        );
-        return;
-    }
-
-    try {
-        const { data, error } = await db.auth.getSession();
-
-        if (error) {
-            console.error("Session check failed:", error.message);
-            return;
-        }
-
-        if (data?.session) {
-            goToDashboard();
-        }
-    } catch (error) {
-        console.error("Could not restore session:", error);
-    }
+async function restoreSession(){
+ if(!db)return;if(isPasswordRecoveryUrl()){showNotice("Password recovery link detected. A password-update form is not yet implemented on this page.","info");return;}
+ try{const {data,error}=await db.auth.getSession();if(error){console.error("Session check failed:",error.message);return;}if(data?.session)goToDashboard();}
+ catch(error){console.error("Could not restore session:",error);}
 }
-
-/*
- * If Supabase completes email confirmation and establishes a session
- * while the student is on this page, send them to the dashboard.
- */
-if (db) {
-    const { data } = db.auth.onAuthStateChange((event, session) => {
-        if (isPasswordRecoveryUrl()) return;
-
-        if (
-            session &&
-            (event === "SIGNED_IN" || event === "INITIAL_SESSION" ||
-             event === "TOKEN_REFRESHED" || event === "USER_UPDATED")
-        ) {
-            goToDashboard();
-        }
-    });
-
-    authListener = data?.subscription || null;
-}
-
+if(db){db.auth.onAuthStateChange((event,session)=>{if(isPasswordRecoveryUrl())return;if(session&&["SIGNED_IN","INITIAL_SESSION","TOKEN_REFRESHED","USER_UPDATED"].includes(event))goToDashboard();});}
 restoreSession();
-
 </script>
 </body>
 </html>
